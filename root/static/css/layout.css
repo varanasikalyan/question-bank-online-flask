@@ -1,0 +1,97 @@
+.logo {
+  width: 50px;
+  height: 50px;
+}
+
+.footer {
+  height: 5vh;  
+}
+
+.square-primary {
+  border-color: #007bff;
+  border-bottom-style: none;
+  color: #28a745;
+  padding-bottom: 0px;  
+}
+
+.square-success {
+  border-color: #28a745;
+  border-bottom-style: none;
+  color: #007bff;
+  padding-bottom: 0px;  
+}
+
+#companyName {
+  vertical-align: sub;
+  margin: 0px 10px 0px 5px;
+  font-size: 30px;
+  letter-spacing: 5px;
+  font-weight: 400;
+}
+
+.icon {
+  vertical-align: sub;
+  width: 20px;
+  height: 20px;
+}
+
+.dropdown-text {
+  color: #000;
+  font-weight: 400;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.dropdown-text:hover {
+  color: #007bff;
+  font-weight: 400;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.icon-text {
+  color: #B2BABB;
+  font-weight: 400;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.icon-text:hover {
+  color: #007bff;
+  font-weight: 400;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.navbar {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+#navbarsOptions {
+  padding-top: 10px;
+}
+
+.border-button {
+  border: 1px solid #B2BABB;
+  border-radius: 2px;
+}
+
+.border-button:hover {
+  border: 1px solid #28a745;
+  border-radius: 2px;
+}
+
+.border-button:hover .icon-text {
+  color: #28a745;
+  font-weight: 400;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+/* @media (min-width: 576px) { .body {background-color: red; } }
+
+@media (min-width: 768px) {.body {background-color:green; } }
+
+@media (min-width: 992px) { .body {background-color:blue; } }
+
+@media (min-width: 1200px) { .body {background-color:yellow; } } */

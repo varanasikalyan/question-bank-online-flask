@@ -1,0 +1,150 @@
+{% extends "layout.html" %}
+{% block styles %}
+            <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/addquestion.css') }}>
+            <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/multiplechoise.css') }}>
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock styles %}
+{% block scripts %}
+            <script src={{ url_for('static', filename='js/vendor/jquery-slim.min.js') }}></script>
+            <script src={{ url_for('static', filename='js/addquestion.js') }}></script>
+{% endblock scripts %}
+{% block content %}
+<div class="container" id="addQuestion">
+    <div class="row">
+        <div class="col-md">
+            <div class="form-group">
+                <p class="display-6">
+                    {% with messages = get_flashed_messages(with_categories=True) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                {% if category == "error" %}
+                                    <span class="bg-danger">{{ message }}</span>
+                                {% elif category == "info" %}
+                                    <span class="bg-success">{{ message }}</span>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </p>
+            </div>
+        </div>
+    </div>
+    <form action="/question" method="POST">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <h3 class="header">Add Question</h3>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-3">
+                <div class="form-group">
+                    <input class="btn btn-md btn-primary" id="validate" name="validate" type="button" value="Validate">
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-3">
+                <div class="form-group">
+                    <input class="btn btn-md btn-success" id="submit" name="submit" type="submit" value="Upload">
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-3">
+                <div class="form-group">
+                    <input class="btn btn-md btn-secondary" id="clear" name="clear" type="button" value="Clear">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md">
+            	<div class="form-group">
+                    <textarea class="form-control" id="question" name="question" placeholder="Question"></textarea>
+            	</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <h4 class="header">Select answer type</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg">
+                <div class="container-fluid answer">
+                    <div class="row">
+                        <div class="col-md">
+                            <input type="hidden" value="multiple" id="selectedType" name="selectedType">
+                            <nav>
+                                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                    <a class="nav-item nav-link active" id="nav-multiple-tab" data-toggle="tab" href="#nav-multiple" role="tab" aria-controls="nav-multiple" aria-selected="true">Multiple choise</a>
+                                    <a class="nav-item nav-link" id="nav-fill-in-tab" data-toggle="tab" href="#nav-fill-in" role="tab" aria-controls="nav-fill-in" aria-selected="false">Fill up the blanks</a>
+                                    <a class="nav-item nav-link" id="nav-written-tab" data-toggle="tab" href="#nav-written" role="tab" aria-controls="nav-written" aria-selected="false">Written</a>
+                                </div>
+                            </nav>
+                            <div>
+                                <div class="tab-pane fade show active" id="nav-multiple" role="tabpanel" aria-labelledby="nav-multiple-tab">
+                                    <table id="answerContainer" border="0">
+                                        <tr>
+                                            <td class="option-td" align="center" valign="middle">
+                                                <div class="input-group">
+                                                    <table>
+                                                        <tr>
+                                                            <td>
+                                                                <button type="button" class="btn bg-danger btn-sm inc-btn" id="minus-btn"><i class="fa fa-minus"></i></button>
+                                                            </td>
+                                                            <td>
+                                                                <input type="hidden" value="2" id="optionsQty" name="optionsQty">
+                                                                <span class="qty_input">Options</span>
+                                                            </td>
+                                                            <td>
+                                                                <button type="button" class="btn bg-success btn-sm inc-btn" id="plus-btn"><i class="fa fa-plus"></i></button>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </td>
+                                            <td class="option-td" align="center" valign="middle">
+                                                Answer
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="option-td option-text" align="center" valign="middle">
+                                                <div class="form-group shadow-textarea">
+                                                    <textarea class="form-control option" id="option1Text" name="option1Text" placeholder="Option 1"></textarea>
+                                                </div>
+                                            </td>
+                                            <td class="option-td" align="center" valign="middle">
+                                                <label class="switch ">
+                                                    <input type="checkbox" id="option1" name="option1" class="success">
+                                                    <span class="slider"></span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="option-td option-text" align="center" valign="middle">
+                                                <div class="form-group shadow-textarea">
+                                                    <textarea class="form-control option" id="option2Text" name="option2Text" placeholder="Option 2"></textarea>
+                                                </div>
+                                            </td>
+                                            <td class="option-td" align="center" valign="middle">
+                                                <label class="switch ">
+                                                    <input type="checkbox" id="option2" name="option2" class="success">
+                                                    <span class="slider"></span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="nav-fill-in" role="tabpanel" aria-labelledby="nav-fill-in-tab">
+                                    Content
+                                </div>
+                                <div class="tab-pane fade" id="nav-written" role="tabpanel" aria-labelledby="nav-written-tab">
+                                    Content
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>    
+    </form>
+</div>
+{% endblock content %}		

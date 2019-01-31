@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block styles %}
+			<link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/careers.css') }}>
+{% endblock styles %}
+{% block content %}
+	<div class="container" id="careers">
+    	<div class="col-md mx-auto content">
+			<div class="row">
+				<div class="display-4">Careers</div>
+			</div>
+			<div class="row row-height">
+				<div>• Please mail us your updated CV at <a href="mailto:careers@hoder.in">careers@hoder.in</a></div>
+			</div>
+		</div>
+	</div>
+{% endblock content %}

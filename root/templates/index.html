@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block styles %}
+			<link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/index.css') }}>
+{% endblock styles %}
+{% block scripts %}
+			<script src={{ url_for('static', filename='js/jquery-3.3.1.min.js') }}></script>
+			<script src={{ url_for('static', filename='js/index.js') }}></script>
+{% endblock scripts %}
+{% block content %}
+	<div id="splashScreen" class="container-fluid">
+		<p class="display-4 splash-message">
+			{% with messages=get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        Successfully registered, <a href="/signin"><span class="text-success">{{ message }}</span></a>
+                    {% endfor %}
+                {% else %}
+					Welcome to <span class="text-primary">h o d e r . i n</span>
+				{% endif %}
+            {% endwith %}			
+		</p>
+	</div>
+{% endblock content %}

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      
+      <!-- Bootstrap CSS -->
+      <link rel="shortcut icon" href={{ url_for('static', filename='images/hoder-logo/hoder-logo.png') }}>
+      <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/bootstrap.min.css') }}>
+      <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/layout.css') }}>
+      <!-- Individual html CSS -->
+      {% block styles %}{% endblock styles %}
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src={{ url_for('static', filename='js/vendor/jquery-slim.min.js') }}></script>
+      <script src={{ url_for('static', filename='js/vendor/popper.min.js') }}></script>
+      <script src={{ url_for('static', filename='js/bootstrap.min.js') }}></script>
+      <title id="companyNameTitle">h o d e r . i n</title>         
+      <!-- Individual html CSS -->
+      {% block scripts %}{% endblock scripts %}
+</head>
+<body class="text-center">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                  {% if current_user != None %}
+                        <a class="navbar-brand" href="/user"><img src={{ url_for('static', filename='images/hoder-logo/hoder-logo.png') }} class="logo" alt="h o d e r . i n"/>
+                  {% else %}
+                        <a class="navbar-brand" href="/"><img src={{ url_for('static', filename='images/hoder-logo/hoder-logo.png') }} class="logo" alt="h o d e r . i n"/>
+                  {% endif %}
+                        <span id="companyName" class="text-primary"><span class="square-success">hoder.in</span></span>
+                  </a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsOptions" aria-controls="navbarsOptions" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarsOptions">
+                        <ul class="navbar-nav mr-auto">
+                              <li class="nav-item active">
+                                    {% if current_user != None %}
+                                          <a class="nav-item nav-link" href="{{ url_for('user') }}">
+                                    {% else %}
+                                          <a class="nav-item nav-link" href="{{ url_for('index') }}">
+                                    {% endif %} 
+                                          <span class="icon-text">Home <span class="sr-only">(current)</span></span>
+                                    </a>
+                              </li>
+                              <li class="nav-item">
+                                    <a class="nav-item nav-link" href="{{ url_for('careers') }}">
+                                          <span class="icon-text">Careers</span>
+                                    </a>
+                              </li>
+                              <li class="nav-item">
+                                    <a class="nav-item nav-link" href="{{ url_for('about') }}">
+                                          <span class="icon-text">About Us</span>
+                                    </a>
+                              </li>
+                              <li class="nav-item">
+                                    <a class="nav-item nav-link" href="{{ url_for('contact') }}">
+                                          <span class="icon-text">Contact Us</span>
+                                    </a>
+                              </li>
+                        </ul>
+                        {% if current_user != None %}
+                              <ul class="navbar-nav">
+                                    <li class="nav-item dropdown">
+                                          <a class="nav-link dropdown-toggle" href="" id="welcomeUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src={{ url_for('static', filename='images/welcome.png') }} class="icon" alt="h o d e r . i n"/><span class="icon-text">Welcome, {{current_user}}</span></a>
+                                          <div class="dropdown-menu" aria-labelledby="welcomeUser">
+                                                <a class="dropdown-item" href="{{ url_for('profile') }}"><img src={{ url_for('static', filename='images/settings.png') }} class="icon" alt="h o d e r . i n"/>
+                                                <span class="dropdown-text">Profile Settings</span>
+                                                </a>
+                                                <a class="dropdown-item" href="{{ url_for('signout') }}"><img src={{ url_for('static', filename='images/logout.png') }} class="icon" alt="h o d e r . i n"/>
+                                                <span class="dropdown-text">Sign Out</span>
+                                                </a>                                                
+                                          </div>
+                                    </li>                                                                        
+                              </ul>
+                        {% else %}
+                              <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                          <a class="nav-item nav-link" href="{{ url_for('signin') }}"><img src={{ url_for('static', filename='images/login.png') }} class="icon" alt="h o d e r . i n"/>
+                                                <span class="icon-text">Sign In</span>
+                                          </a>
+                                    </li>
+                                    <li class="nav-item border-button">
+                                          <a class="nav-item nav-link" href="{{ url_for('signup') }}"><img src={{ url_for('static', filename='images/signup.png') }} class="icon" alt="h o d e r . i n"/>
+                                                <span class="icon-text">Join Us</span>
+                                          </a>
+                                    </li>
+                              </ul>
+                        {% endif %}                        
+                  </div>
+            </div>
+      </nav>
+      <main>
+            {% block content %}{% endblock content %}
+      </main>
+      <footer class="footer fixed-bottom">
+            <div class="container">
+                  <h6 class="text-muted">Copyright © 2018 hoder.in</h6>
+            </div>
+      </footer>
+</body>
+</html>
